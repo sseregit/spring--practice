@@ -1,16 +1,21 @@
 package com.example.demo.order;
 
+import org.springframework.stereotype.Component;
+
+import com.example.demo.annotation.MainDiscountPolicy;
 import com.example.demo.discount.DiscountPolicy;
 import com.example.demo.member.Member;
 import com.example.demo.member.MemberRepository;
-import com.example.demo.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 
+@Component
 public class OrderServiceImpl implements OrderService {
 	
 	private final MemberRepository memberRepository;
 	private final DiscountPolicy discountPolicy;
-	
-	public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+
+	public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
+		super();
 		this.memberRepository = memberRepository;
 		this.discountPolicy = discountPolicy;
 	}
@@ -23,4 +28,7 @@ public class OrderServiceImpl implements OrderService {
 		return new Order(memberId, itemName, itemPrice, discountPrice);
 	}
 
+	public MemberRepository getMemberRepository() {
+		return memberRepository;
+	}
 }
