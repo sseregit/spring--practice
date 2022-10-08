@@ -1,5 +1,6 @@
 package com.example.demo.web;
 
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.common.MyLogger;
@@ -10,10 +11,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LogDemoService {
 	
-	private final MyLogger mylogger;
+	private final MyLogger myLogger;
 
 	public void logic(String id) {
-		mylogger.log("service id = "+id);
+		myLogger.log("service id = "+id);
 		
 	}
 
